@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" style="background:#ffffff;font-family:Segoe UI,Arial,sans-serif">
+<text x="380.0" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Track A Specialization: 3-Level MLFQ Scheduler with Aging</text>
+<line x1="70" y1="60" x2="70" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<line x1="70" y1="340" x2="720" y2="340" stroke="#64748b" stroke-width="1.5"/>
+<line x1="70" y1="340.0" x2="720" y2="340.0" stroke="#e2e8f0" stroke-dasharray="4,4"/>
+<text x="60" y="344.0" text-anchor="end" font-size="11" fill="#475569">0</text>
+<line x1="70" y1="270.0" x2="720" y2="270.0" stroke="#e2e8f0" stroke-dasharray="4,4"/>
+<text x="60" y="274.0" text-anchor="end" font-size="11" fill="#475569">4</text>
+<line x1="70" y1="200.0" x2="720" y2="200.0" stroke="#e2e8f0" stroke-dasharray="4,4"/>
+<text x="60" y="204.0" text-anchor="end" font-size="11" fill="#475569">8</text>
+<line x1="70" y1="130.0" x2="720" y2="130.0" stroke="#e2e8f0" stroke-dasharray="4,4"/>
+<text x="60" y="134.0" text-anchor="end" font-size="11" fill="#475569">13</text>
+<line x1="70" y1="60.0" x2="720" y2="60.0" stroke="#e2e8f0" stroke-dasharray="4,4"/>
+<text x="60" y="64.0" text-anchor="end" font-size="11" fill="#475569">17</text>
+<rect x="107.25" y="257.6470588235294" width="42" height="82.3529411764706" fill="#10b981" rx="3"/>
+<text x="128.25" y="252.6470588235294" text-anchor="middle" font-size="10" fill="#1e293b">5</text>
+<rect x="153.25" y="224.7058823529412" width="42" height="115.29411764705881" fill="#047857" rx="3"/>
+<text x="174.25" y="219.7058823529412" text-anchor="middle" font-size="10" fill="#1e293b">7</text>
+<text x="151.25" y="362" text-anchor="middle" font-size="11" fill="#1e293b">UiKeyHandler</text>
+<rect x="269.75" y="208.23529411764707" width="42" height="131.76470588235293" fill="#10b981" rx="3"/>
+<text x="290.75" y="203.23529411764707" text-anchor="middle" font-size="10" fill="#1e293b">8</text>
+<rect x="315.75" y="175.2941176470588" width="42" height="164.7058823529412" fill="#047857" rx="3"/>
+<text x="336.75" y="170.2941176470588" text-anchor="middle" font-size="10" fill="#1e293b">10</text>
+<text x="313.75" y="362" text-anchor="middle" font-size="11" fill="#1e293b">AudioMixerIo</text>
+<rect x="432.25" y="175.2941176470588" width="42" height="164.7058823529412" fill="#10b981" rx="3"/>
+<text x="453.25" y="170.2941176470588" text-anchor="middle" font-size="10" fill="#1e293b">10</text>
+<rect x="478.25" y="76.47058823529414" width="42" height="263.52941176470586" fill="#047857" rx="3"/>
+<text x="499.25" y="71.47058823529414" text-anchor="middle" font-size="10" fill="#1e293b">16</text>
+<text x="476.25" y="362" text-anchor="middle" font-size="11" fill="#1e293b">VideoEncoder</text>
+<rect x="594.75" y="175.2941176470588" width="42" height="164.7058823529412" fill="#10b981" rx="3"/>
+<text x="615.75" y="170.2941176470588" text-anchor="middle" font-size="10" fill="#1e293b">10</text>
+<rect x="640.75" y="60.0" width="42" height="280.0" fill="#047857" rx="3"/>
+<text x="661.75" y="55.0" text-anchor="middle" font-size="10" fill="#1e293b">17</text>
+<text x="638.75" y="362" text-anchor="middle" font-size="11" fill="#1e293b">CpuMatrixMul</text>
+<rect x="520" y="48" width="12" height="12" fill="#10b981"/>
+<text x="538" y="58" font-size="11" fill="#334155">Wait Ticks</text>
+<rect x="635" y="48" width="12" height="12" fill="#047857"/>
+<text x="653" y="58" font-size="11" fill="#334155">Turnaround Ticks</text>
+</svg>

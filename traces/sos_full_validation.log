@@ -1,0 +1,131 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+==================================================
+   SOS: Educational Rust Micro-OS (x86_64 UEFI)   
+==================================================
+[INFO] Milestone 1 (Boot Layer): Kernel initialized successfully.
+[INFO] Milestone 2 (Diagnostics Layer): Console and tracing operational.
+[TRACE] tick=0 | sub=BOOT | event=KERNEL_START | status=OK arch=x86_64 mode=UEFI
+[TRACE] tick=1 | sub=CONSOLE | event=UART_READY | port=0x3F8 baud=38400
+[INFO] Milestone 1 (Boot) & Milestone 2 (Diagnostics) Verified Successfully.
+[INFO] Starting Layer 7 Synchronization Verification...
+[TRACE] tick=1 | sub=SYNC | event=CRITICAL_SECTION | counter=1 checksum=42
+[TRACE] tick=2 | sub=SYNC | event=LOCK_CONTENDED | try_lock=REJECTED
+[TRACE] tick=2 | sub=SYNC | event=CRITICAL_SECTION | counter=2 checksum=84
+[TRACE] tick=3 | sub=SYNC | event=CRITICAL_SECTION | counter=3 checksum=126
+[TRACE] tick=4 | sub=SYNC | event=CRITICAL_SECTION | counter=4 checksum=168
+[INFO] Spinlock Verified: counter=4 checksum=168 acquisitions=5 contentions=1
+[TRACE] tick=5 | sub=SYNC | event=INVARIANT_OK | counter=4 checksum=168 acq=5 cont=1
+[INFO] Milestone 6 (Layer 7: Synchronization) Verified Successfully.
+[INFO] Starting Layer 8 Memory Management Verification...
+[TRACE] tick=6 | sub=MEMORY | event=BUMP_ALLOC | size=128 align=8 offset=0
+[TRACE] tick=7 | sub=MEMORY | event=BUMP_ALLOC | size=512 align=64 offset=128
+[TRACE] tick=8 | sub=MEMORY | event=BUMP_OOM_HANDLED | req_size=131072 status=REJECTED_SAFELY
+[INFO] Bump Allocator Verified: next_offset=640 allocs=2 bytes_used=640 rejected_oom=1
+[TRACE] tick=9 | sub=MEMORY | event=FREELIST_ALLOC | block_a=0 block_b=1
+[TRACE] tick=10 | sub=MEMORY | event=FREELIST_FREE | freed_block=0
+[TRACE] tick=11 | sub=MEMORY | event=FREELIST_REUSE | reused_block=0 expected=0
+[INFO] Free-List Allocator Verified: active_blocks=2 total_allocs=3 total_frees=1 reuse_match=true
+[INFO] Milestone 7 (Layer 8: Memory Management) Verified Successfully.
+[INFO] Starting Layer 3 (Task Representation) & Layer 4 (Ready Queue) Verification...
+[TRACE] tick=12 | sub=QUEUE | event=ENQUEUE | task_id=1 name=TelemetryTask state=READY queue_len=1
+[TRACE] tick=13 | sub=QUEUE | event=ENQUEUE | task_id=2 name=SensorPollTask state=READY queue_len=2
+[TRACE] tick=14 | sub=QUEUE | event=ENQUEUE | task_id=3 name=CryptoHashTask state=READY queue_len=3
+[TRACE] tick=15 | sub=QUEUE | event=ENQUEUE | task_id=4 name=LoggerSyncTask state=READY queue_len=4
+[TRACE] tick=16 | sub=TASK | event=STATE_CHANGE | task_id=1 name= TelemetryTask from=READY to=RUNNING
+[TRACE] tick=17 | sub=TASK | event=STATE_CHANGE | task_id=1 name= TelemetryTask from=RUNNING to=BLOCKED
+[TRACE] tick=18 | sub=TASK | event=STATE_CHANGE | task_id=1 name= TelemetryTask from=BLOCKED to=READY
+[TRACE] tick=19 | sub=QUEUE | event=REQUEUE_AFTER_IO | task_id=1 queue_len=4
+[INFO] Task & Ready Queue Verified: active_tasks=4 queue_depth=4 FIFO_order=OK
+[INFO] Milestone 3 (Layer 3: Tasks & Layer 4: Ready Queue) Verified Successfully.
+[INFO] Starting Layer 5 (Round Robin Scheduler) Verification (Quantum = 2 ticks)...
+[TRACE] tick=20 | sub=SCHED_RR | event=DISPATCH | task_id=1 name=NetPacketRx quantum=2 work_rem=5
+[TRACE] tick=21 | sub=SCHED_RR | event=EXEC_SLICE | task_id=1 progress=1/5 slice_rem=1
+[TRACE] tick=22 | sub=SCHED_RR | event=EXEC_SLICE | task_id=1 progress=2/5 slice_rem=0
+[TRACE] tick=22 | sub=SCHED_RR | event=QUANTUM_EXPIRED | task_id=1 requeued=true work_done=2/5
+[TRACE] tick=22 | sub=SCHED_RR | event=DISPATCH | task_id=2 name=DiskBlockIo quantum=2 work_rem=3
+[TRACE] tick=23 | sub=SCHED_RR | event=EXEC_SLICE | task_id=2 progress=1/3 slice_rem=1
+[TRACE] tick=24 | sub=SCHED_RR | event=EXEC_SLICE | task_id=2 progress=2/3 slice_rem=0
+[TRACE] tick=24 | sub=SCHED_RR | event=QUANTUM_EXPIRED | task_id=2 requeued=true work_done=2/3
+[TRACE] tick=24 | sub=SCHED_RR | event=DISPATCH | task_id=3 name=CryptoVerify quantum=2 work_rem=6
+[TRACE] tick=25 | sub=SCHED_RR | event=EXEC_SLICE | task_id=3 progress=1/6 slice_rem=1
+[TRACE] tick=26 | sub=SCHED_RR | event=EXEC_SLICE | task_id=3 progress=2/6 slice_rem=0
+[TRACE] tick=26 | sub=SCHED_RR | event=QUANTUM_EXPIRED | task_id=3 requeued=true work_done=2/6
+[TRACE] tick=26 | sub=SCHED_RR | event=DISPATCH | task_id=4 name=TelemetryAgg quantum=2 work_rem=2
+[TRACE] tick=27 | sub=SCHED_RR | event=EXEC_SLICE | task_id=4 progress=1/2 slice_rem=1
+[TRACE] tick=28 | sub=SCHED_RR | event=EXEC_SLICE | task_id=4 progress=2/2 slice_rem=0
+[TRACE] tick=28 | sub=SCHED_RR | event=TASK_COMPLETE | task_id=4 name=TelemetryAgg total_run=2 total_wait=6 turnaround=8
+[TRACE] tick=28 | sub=SCHED_RR | event=DISPATCH | task_id=1 name=NetPacketRx quantum=2 work_rem=3
+[TRACE] tick=29 | sub=SCHED_RR | event=EXEC_SLICE | task_id=1 progress=3/5 slice_rem=1
+[TRACE] tick=30 | sub=SCHED_RR | event=EXEC_SLICE | task_id=1 progress=4/5 slice_rem=0
+[TRACE] tick=30 | sub=SCHED_RR | event=QUANTUM_EXPIRED | task_id=1 requeued=true work_done=4/5
+[TRACE] tick=30 | sub=SCHED_RR | event=DISPATCH | task_id=2 name=DiskBlockIo quantum=2 work_rem=1
+[TRACE] tick=31 | sub=SCHED_RR | event=EXEC_SLICE | task_id=2 progress=3/3 slice_rem=1
+[TRACE] tick=31 | sub=SCHED_RR | event=TASK_COMPLETE | task_id=2 name=DiskBlockIo total_run=3 total_wait=8 turnaround=11
+[TRACE] tick=31 | sub=SCHED_RR | event=DISPATCH | task_id=3 name=CryptoVerify quantum=2 work_rem=4
+[TRACE] tick=32 | sub=SCHED_RR | event=EXEC_SLICE | task_id=3 progress=3/6 slice_rem=1
+[TRACE] tick=33 | sub=SCHED_RR | event=EXEC_SLICE | task_id=3 progress=4/6 slice_rem=0
+[TRACE] tick=33 | sub=SCHED_RR | event=QUANTUM_EXPIRED | task_id=3 requeued=true work_done=4/6
+[TRACE] tick=33 | sub=SCHED_RR | event=DISPATCH | task_id=1 name=NetPacketRx quantum=2 work_rem=1
+[TRACE] tick=34 | sub=SCHED_RR | event=EXEC_SLICE | task_id=1 progress=5/5 slice_rem=1
+[TRACE] tick=34 | sub=SCHED_RR | event=TASK_COMPLETE | task_id=1 name=NetPacketRx total_run=5 total_wait=9 turnaround=14
+[TRACE] tick=34 | sub=SCHED_RR | event=DISPATCH | task_id=3 name=CryptoVerify quantum=2 work_rem=2
+[TRACE] tick=35 | sub=SCHED_RR | event=EXEC_SLICE | task_id=3 progress=5/6 slice_rem=1
+[TRACE] tick=36 | sub=SCHED_RR | event=EXEC_SLICE | task_id=3 progress=6/6 slice_rem=0
+[TRACE] tick=36 | sub=SCHED_RR | event=TASK_COMPLETE | task_id=3 name=CryptoVerify total_run=6 total_wait=10 turnaround=16
+[INFO] Round Robin Scheduler Verified: tasks_completed=4 context_switches=9 avg_wait_ticks=8 avg_turnaround_ticks=12
+[INFO] Milestone 4 (Layer 5: Round Robin Scheduler) Verified Successfully.
+[INFO] Starting Layer 6 (Timer-Driven Preemptive Scheduling) Verification...
+[TRACE] tick=50 | sub=TIMER | event=PIT_INIT | port=0x40 freq_hz=1000 mode=square_wave
+[TRACE] tick=51 | sub=TIMER | event=COOPERATIVE_PHASE | task_id=1 mode=COOPERATIVE holds_cpu_ticks=4 voluntary_yield=true
+[TRACE] tick=52 | sub=TIMER | event=IRQ0_PREEMPT_TICK | hw_tick=1 tsc_cycles=201138 preempt_from=1 switch_to=2
+[TRACE] tick=53 | sub=TIMER | event=IRQ0_PREEMPT_TICK | hw_tick=2 tsc_cycles=4060 preempt_from=2 switch_to=1
+[TRACE] tick=54 | sub=TIMER | event=IRQ0_PREEMPT_TICK | hw_tick=3 tsc_cycles=2990 preempt_from=1 switch_to=2
+[TRACE] tick=55 | sub=TIMER | event=IRQ0_PREEMPT_TICK | hw_tick=4 tsc_cycles=2768 preempt_from=2 switch_to=1
+[INFO] Hardware Timer Verified: pit_hz=1000 total_hw_ticks=4 preemption=ACTIVE
+[INFO] Milestone 5 (Layer 6: Timer-Driven Preemption) Verified Successfully.
+[INFO] Starting Track A Specialization (3-Level MLFQ Scheduler with Aging)...
+[TRACE] tick=60 | sub=MLFQ | event=ENQUEUE_INIT | task_id=1 name=CpuMatrixMul level=Q0 work_target=7
+[TRACE] tick=60 | sub=MLFQ | event=ENQUEUE_INIT | task_id=2 name=UiKeyHandler level=Q0 work_target=2
+[TRACE] tick=60 | sub=MLFQ | event=ENQUEUE_INIT | task_id=3 name=VideoEncoder level=Q0 work_target=6
+[TRACE] tick=60 | sub=MLFQ | event=ENQUEUE_INIT | task_id=4 name=AudioMixerIo level=Q0 work_target=2
+[TRACE] tick=60 | sub=MLFQ | event=DISPATCH | task_id=1 name=CpuMatrixMul level=Q0 quantum=1 rem_work=7
+[TRACE] tick=61 | sub=MLFQ | event=DEMOTE | task_id=1 from=Q0 to=Q1 progress=1/7
+[TRACE] tick=61 | sub=MLFQ | event=DISPATCH | task_id=2 name=UiKeyHandler level=Q0 quantum=1 rem_work=2
+[TRACE] tick=62 | sub=MLFQ | event=DEMOTE | task_id=2 from=Q0 to=Q1 progress=1/2
+[TRACE] tick=62 | sub=MLFQ | event=DISPATCH | task_id=3 name=VideoEncoder level=Q0 quantum=1 rem_work=6
+[TRACE] tick=63 | sub=MLFQ | event=DEMOTE | task_id=3 from=Q0 to=Q1 progress=1/6
+[TRACE] tick=63 | sub=MLFQ | event=DISPATCH | task_id=4 name=AudioMixerIo level=Q0 quantum=1 rem_work=2
+[TRACE] tick=64 | sub=MLFQ | event=DEMOTE | task_id=4 from=Q0 to=Q1 progress=1/2
+[TRACE] tick=64 | sub=MLFQ | event=DISPATCH | task_id=1 name=CpuMatrixMul level=Q1 quantum=2 rem_work=6
+[TRACE] tick=66 | sub=MLFQ | event=DEMOTE | task_id=1 from=Q1 to=Q2 progress=3/7
+[TRACE] tick=66 | sub=MLFQ | event=DISPATCH | task_id=2 name=UiKeyHandler level=Q1 quantum=2 rem_work=1
+[TRACE] tick=67 | sub=MLFQ | event=TASK_COMPLETE | task_id=2 name=UiKeyHandler final_level=Q1 run_ticks=2 wait_ticks=5 turnaround=7
+[TRACE] tick=67 | sub=MLFQ | event=DISPATCH | task_id=3 name=VideoEncoder level=Q1 quantum=2 rem_work=5
+[TRACE] tick=69 | sub=MLFQ | event=DEMOTE | task_id=3 from=Q1 to=Q2 progress=3/6
+[TRACE] tick=69 | sub=MLFQ | event=AGING_BOOST | boost_count=1 action=ALL_TASKS_PROMOTED_TO_Q0
+[TRACE] tick=69 | sub=MLFQ | event=DISPATCH | task_id=4 name=AudioMixerIo level=Q0 quantum=1 rem_work=1
+[TRACE] tick=70 | sub=MLFQ | event=TASK_COMPLETE | task_id=4 name=AudioMixerIo final_level=Q0 run_ticks=2 wait_ticks=8 turnaround=10
+[TRACE] tick=70 | sub=MLFQ | event=DISPATCH | task_id=1 name=CpuMatrixMul level=Q0 quantum=1 rem_work=4
+[TRACE] tick=71 | sub=MLFQ | event=DEMOTE | task_id=1 from=Q0 to=Q1 progress=4/7
+[TRACE] tick=71 | sub=MLFQ | event=DISPATCH | task_id=3 name=VideoEncoder level=Q0 quantum=1 rem_work=3
+[TRACE] tick=72 | sub=MLFQ | event=DEMOTE | task_id=3 from=Q0 to=Q1 progress=4/6
+[TRACE] tick=72 | sub=MLFQ | event=DISPATCH | task_id=1 name=CpuMatrixMul level=Q1 quantum=2 rem_work=3
+[TRACE] tick=74 | sub=MLFQ | event=DEMOTE | task_id=1 from=Q1 to=Q2 progress=6/7
+[TRACE] tick=74 | sub=MLFQ | event=DISPATCH | task_id=3 name=VideoEncoder level=Q1 quantum=2 rem_work=2
+[TRACE] tick=76 | sub=MLFQ | event=TASK_COMPLETE | task_id=3 name=VideoEncoder final_level=Q1 run_ticks=6 wait_ticks=10 turnaround=16
+[TRACE] tick=76 | sub=MLFQ | event=DISPATCH | task_id=1 name=CpuMatrixMul level=Q2 quantum=4 rem_work=1
+[TRACE] tick=77 | sub=MLFQ | event=TASK_COMPLETE | task_id=1 name=CpuMatrixMul final_level=Q2 run_ticks=7 wait_ticks=10 turnaround=17
+[TRACE] tick=77 | sub=MLFQ | event=AGING_BOOST | boost_count=2 action=ALL_TASKS_PROMOTED_TO_Q0
+[INFO] Track A MLFQ Verified: switches=13 demotions=9 aging_boosts=2 interactive_avg_wait=6 cpu_bound_avg_wait=10
+[INFO] Milestone 8 (Specialization Track A: MLFQ Scheduler) Verified Successfully.
+[INFO] Starting Milestone 9 & 10: Integrated Validation Suite (TC1 - TC6)...
+[TRACE] tick=100 | sub=TEST | event=TC1_MIN_CONFIG | tasks=2 quantum=2 total_ticks=7 switches=4 status=PASS
+[TRACE] tick=120 | sub=TEST | event=TC2_MULTI_TASKS | tasks=5 quantum=2 total_ticks=17 switches=10 status=PASS
+[TRACE] tick=150 | sub=TEST | event=TC3_BOUNDARY_QUANTUM1 | tasks=4 quantum=1 total_ticks=14 switches=14 status=PASS
+[TRACE] tick=200 | sub=TEST | event=TC4_STRESS_12TASKS | tasks=12 quantum=2 total_ticks=37 switches=21 status=PASS
+[TRACE] tick=250 | sub=TEST | event=TC5_FAILURE_HANDLING | queue_overflow_rejected=true zero_alloc_rejected=true invalid_free_rejected=true status=PASS
+[TRACE] tick=300 | sub=TEST | event=TC6_REPEATABILITY | run1_hash=0x124B30AC7BC44CE2 run2_hash=0x124B30AC7BC44CE2 identical=true status=PASS
+[INFO] All 6 Required Test Cases Verified: TC1=PASS TC2=PASS TC3=PASS TC4=PASS TC5=PASS TC6=PASS
+[INFO] Milestone 9 & 10 (Integrated Micro-OS & Validation TC1-TC6) Verified Successfully.
+=== SOS MICRO-OS FULL EXECUTION COMPLETE ===

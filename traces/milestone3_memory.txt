@@ -1,0 +1,23 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261109214300
+Username: VSK\sriku
+RunAs User: VSK\sriku
+Configuration Name: 
+Machine: VSK (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -Command  = { & 'C:\Program Files\qemu\qemu-system-x86_64.exe' '-drive', 'if=pflash,format=raw,readonly=on,file=C:\Program Files\qemu\share\edk2-x86_64-code.fd', '-drive', 'format=raw,file=C:\Users\sriku\Desktop\Programming\Rust\SOS\build\esp\EFI\BOOT\BOOTX64.EFI', '-display', 'none', '-serial', 'monitor:stdio' }; Start-Transcript -Path 'C:\Users\sriku\Desktop\Programming\Rust\SOS\traces\milestone3_memory.txt'; ; [System.Threading.Thread]::Sleep(8000); Stop-Transcript
+Process ID: 22948
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\sriku\Desktop\Programming\Rust\SOS\traces\milestone3_memory.txt
+**********************
+Windows PowerShell transcript end
+End time: 20261109214308
+**********************

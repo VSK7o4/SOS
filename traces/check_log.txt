@@ -1,0 +1,4 @@
+Checking if kernel reaches memory demo...
+=== DIAGNOSTIC OUTPUT START ===
+EOF marker to check if we got here: THIS_SHOULD_NOT_APPEAR_BEFORE_MEMORY_DEMO
+=== DIAGNOSTIC OUTPUT END ===

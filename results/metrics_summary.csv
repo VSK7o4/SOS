@@ -1,0 +1,9 @@
+Scheduler,Task,Run_Ticks,Wait_Ticks,Turnaround_Ticks,Final_Queue
+RoundRobin_Q2,TelemetryAgg,2,6,8,RR_FIFO
+RoundRobin_Q2,DiskBlockIo,3,8,11,RR_FIFO
+RoundRobin_Q2,NetPacketRx,5,9,14,RR_FIFO
+RoundRobin_Q2,CryptoVerify,6,10,16,RR_FIFO
+MLFQ_3Level,UiKeyHandler,2,5,7,Q1
+MLFQ_3Level,AudioMixerIo,2,8,10,Q0
+MLFQ_3Level,VideoEncoder,6,10,16,Q1
+MLFQ_3Level,CpuMatrixMul,7,10,17,Q2
